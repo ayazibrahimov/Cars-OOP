@@ -10,37 +10,43 @@ class CarsCL{
 }
 
 
+// cart of amound order
 class CardShopping{
- 
+
+    
     cars = [];
 
+
+     addProduct(product){
+        this.cars.push(product)
+        this.totalOutput.innerHTML = `<h2>Total: \$${1}</h2>`;
+        console.log(this.cars);
+    }
+
+
+    
     render(){
         const cartEl = document.createElement('section')
         cartEl.innerHTML=`
         
-        <h2>Total: \$0</h2>
+        <h2>Total: \$${0}</h2>
         <button>Order Now!</button>
-        
         `
         cartEl.className = 'cart'
-
+        this.totalOutput = cartEl.querySelector('h2')
         return cartEl;
     }
 }
 
 
+// one cart
 class CarItem{
     constructor(product){
-        this.id = product.id;
-        this.imgUrl = product.imgUrl;
-        this.title = product.title;
-        this.price = product.price;
-        this.description = product.description;
+        this.product = product
     }
 
     addToCard(){
-      const cardWishList = new CarWishList(this)
-      cardWishList.render()
+        App.addProductToCard(this.product)
     }
 
     
@@ -50,25 +56,25 @@ class CarItem{
 
         productItem.innerHTML = `
          
-            <img src='${this.imgUrl}' alt='${this.title}'/>
+            <img src='${this.product.imgUrl}' alt='${this.product.title}'/>
              <div class='product-item__content'> 
-              <h2>${this.title}</h2>
-              <h3>\$${this.price}</h3>
-              <p>\$${this.description}</p>
+              <h2>${this.product.title}</h2>
+              <h3>\$${this.product.price}</h3>
+              <p>\$${this.product.description}</p>
               <button>Add to Card</button>
              </div>
           </div>
         `
 
         const addCardButton = productItem.querySelector('button')
-        addCardButton.addEventListener('click',this.addToCard.bind(this))
+        addCardButton.addEventListener('click', this.addToCard.bind(this))
 
         return productItem;
     }
 }
 
 
-
+// All cart
 class CarList{
     cars= [
         new CarsCL(1,'Aston Martin','https://www.motortrend.com/files/661960e99541220008c31a6c/2024astonmartinvantageparkaveqstudio-1.jpg?w=768&width=768&q=75&format=webp','194.400','Founded in 1913 by Lionel Martin and Robert Bamford, Aston Martin is acknowledged as an iconic global brand synonymous with style, luxury, performance and exclusivity.'),
@@ -95,36 +101,43 @@ class CarList{
 }
 
 
+
+//Shopping render wishlist and all cars
 class Shopping{
- 
+
     render(){
         const renderHook = document.getElementById('app')
-
-        const cardShopping = new CardShopping()
-        const cart = cardShopping.render()
-
+        this.cardShopping = new CardShopping()
+        const cart = this.cardShopping.render()
 
         const carList = new CarList()
-
         const cars = carList.render()
 
-        renderHook.append(cars)
         renderHook.append(cart)
+        renderHook.append(cars)
     }
 }
 
 
 
-const shopping = new Shopping()
 
-shopping.render()
+class App{
+
+   static init(){   
+     const shopping = new Shopping()
+     shopping.render()
+     this.card = shopping.cardShopping
+   }
+
+   static addProductToCard(product){
+     this.card.addProduct(product)
+   }
+
+}
 
 
 
-
-
-
-
+App.init()
 
 
 
