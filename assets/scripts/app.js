@@ -11,10 +11,8 @@ class CarsCL{
 
 
 class CardShopping{
-
-    
+ 
     cars = [];
-
 
     render(){
         const cartEl = document.createElement('section')
@@ -27,15 +25,11 @@ class CardShopping{
         cartEl.className = 'cart'
 
         return cartEl;
-
     }
-
-
 }
 
 
 class CarItem{
-
     constructor(product){
         this.id = product.id;
         this.imgUrl = product.imgUrl;
@@ -43,7 +37,6 @@ class CarItem{
         this.price = product.price;
         this.description = product.description;
     }
-
 
     addToCard(){
       const cardWishList = new CarWishList(this)
@@ -77,13 +70,11 @@ class CarItem{
 
 
 class CarList{
-
     cars= [
         new CarsCL(1,'Aston Martin','https://www.motortrend.com/files/661960e99541220008c31a6c/2024astonmartinvantageparkaveqstudio-1.jpg?w=768&width=768&q=75&format=webp','194.400','Founded in 1913 by Lionel Martin and Robert Bamford, Aston Martin is acknowledged as an iconic global brand synonymous with style, luxury, performance and exclusivity.'),
         new CarsCL(2,'Bugatti Chiron','https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bugatti_Chiron_1.jpg/800px-Bugatti_Chiron_1.jpg','300.400','The Bugatti Chiron is a mid-engine two-seater sports car designed and developed in Germany by Bugatti Engineering GmbH and manufactured in Molsheim'),
         new CarsCL(3,'Maserati','https://www.motortrend.com/uploads/2022/11/2023-Maserati-MC20-Cielo-11.jpg?w=768&width=768&q=75&format=webp','200.400','Maserati S.p.A. (Italian: [mazeˈraːti]) is an Italian luxury vehicle manufacturer. Established on 1 December 1914 in Bologna, Italy,[4] the company " s headquarters are now in Modena, and its emblem is a trident')
     ]
-
 
     constructor(){}
 
@@ -105,7 +96,7 @@ class CarList{
 
 
 class Shopping{
-  
+ 
     render(){
         const renderHook = document.getElementById('app')
 
@@ -117,10 +108,9 @@ class Shopping{
 
         const cars = carList.render()
 
-        renderHook.append(cart)
         renderHook.append(cars)
+        renderHook.append(cart)
     }
-
 }
 
 

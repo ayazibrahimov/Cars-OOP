@@ -48,6 +48,10 @@ button:active {
   border-color: #790fa3;
 }
 
+#app{
+  padding: 0 40px;
+}
+
 .cart {
   margin: 5rem 2rem;
   border: 2px solid #540075;
