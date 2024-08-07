@@ -12,16 +12,30 @@ class CarsCL{
 
 // cart of amound order
 class CardShopping{
-
-    
     cars = [];
 
 
-     addProduct(product){
-        this.cars.push(product)
-        this.totalOutput.innerHTML = `<h2>Total: \$${1}</h2>`;
-        console.log(this.cars);
+    set CarsItem(value){
+       this.cars = value
+       this.totalOutput.innerHTML = `<h2>Total: \$${this.totalAmount.toFixed(2)}</h2>`;
     }
+    
+
+     get totalAmount() {
+        const sum = this.cars.reduce((prevValue,curItem) => prevValue + Number(curItem.price),
+          0
+        )
+        return sum
+     } 
+
+
+     addProduct(product){
+         
+        const updatedCars = [...this.cars]
+        updatedCars.push(product)
+        this.CarsItem = updatedCars
+
+      }
 
 
     
@@ -29,11 +43,13 @@ class CardShopping{
         const cartEl = document.createElement('section')
         cartEl.innerHTML=`
         
-        <h2>Total: \$${0}</h2>
+         <h2 class="my-total">Total: \$${0}</h2>
         <button>Order Now!</button>
         `
         cartEl.className = 'cart'
-        this.totalOutput = cartEl.querySelector('h2')
+
+
+        this.totalOutput = cartEl.querySelector('.my-total')
         return cartEl;
     }
 }
@@ -144,43 +160,6 @@ App.init()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const ayaz = {
-//     name: 'Ayaz',
-//     age:26,
-
-
-//     calcAge(a,b){
-//         console.log((2024 - this.age)* a *b);
-//     }
-// }
-
-// const asef = {
-//     name: 'Asef',
-//     age: 22
-// }
-
-// const ageCalc = ayaz.calcAge.bind(asef, 10, 20);
-
-
-// ageCalc()
 
 
 
